@@ -1,8 +1,14 @@
+@import '.../../../../styles/utils/index';
+
 .dailyDataCardWrapper {
   display: flex;
   overflow-x: auto;
-
+  margin: 20px 150px;
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  @include breakpoint(tablet) {
+    margin: 20px 60px;
   }
 }

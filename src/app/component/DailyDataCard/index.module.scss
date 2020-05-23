@@ -1,9 +1,13 @@
+@import '.../../../../styles/utils/index';
+
 .card {
-  margin-right: 15px;
+  margin-right: 50px;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.5s ease-in-out;
+  padding: 12px;
   &:nth-last-child() {
     margin-right: 0;
   }
@@ -31,7 +35,14 @@
   }
 
   &:hover {
-    border: 1px solid red;
+    border: 1px solid blue;
     border-radius: 5px;
   }
+}
+
+
+@include breakpoint(mobile) {
+ .card {
+   font-size: 18px;
+ }   
 }

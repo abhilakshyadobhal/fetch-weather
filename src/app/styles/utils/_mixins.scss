@@ -1,0 +1,69 @@
+/*
+ * RESPONSIVE MIXINS: laptop -> tablet -> mobile
+ */
+
+$breakpoints: (
+  mobile-s: 320px,
+  // x 568
+    mobile-m: 375px,
+  // x 667
+    mobile: 620px,
+  // x 800
+    tablet: 768px,
+  // x 1024
+    desktop-s: 1024px,
+  // x 768
+    desktop-m: 1366px,
+  // x 768
+    desktop: 1440px,
+  // x 900
+);
+
+$breakpointsHeight: (
+  mobile-s: 1000px,
+  mobile-m: 1000px,
+  mobile: 1000px,
+  tablet: 1024px,
+  desktop-s: 1024px,
+  desktop-m: 1366px,
+  desktop: 1440px,
+);
+
+$orientations: (
+  potrait: 'potrait',
+  landscape: 'landscape',
+);
+
+@mixin breakpoint($breakpoint, $orientation: null) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $point: map-get($breakpoints, $breakpoint);
+
+    // if there is some orientation
+    @if map-has-key($orientations, $orientation) {
+      @media (min-device-width: $point) and (max-device-width: map-get($breakpointsHeight, $breakpoint)) and (orientation: map-get($orientations, $orientation)) {
+        @content;
+      }
+    } @else {
+      @if ($orientation != null) {
+        @error 'Invalid Orientation: #{$orientation}';
+      } @else {
+        @media (max-width: $point) {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @error 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin breakpoint-min($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $point: map-get($breakpoints, $breakpoint);
+    @media (min-width: $point + 1px) {
+      @content;
+    }
+  } @else {
+    @error 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
