@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { fetchWeather } from '../../services/weather.service';
 import { DailyData } from '../component/DailyData';
+import { CurrentDataCard } from '../component/CurrentDataCard';
 import { HourlyData } from '../component/HourlyData';
+import { InputComponent } from '../component/InputComponent';
 
 const WeatherContainer = () => {
   const [loading, setLoading] = useState(false);
@@ -30,8 +32,11 @@ const WeatherContainer = () => {
 
   return (
     <React.Fragment>
+      <InputComponent />
       <DailyData dailyData={dailyData} />
-      <HourlyData hourlyData={hourlyData} />
+      <CurrentDataCard currentData={currentData}>
+        <HourlyData hourlyData={hourlyData} />
+      </CurrentDataCard>
     </React.Fragment>
   );
 };

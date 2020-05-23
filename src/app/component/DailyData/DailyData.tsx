@@ -8,7 +8,6 @@ interface IProps {
 }
 
 const DailyData: React.FC<IProps> = ({ dailyData }) => {
-  console.log(dailyData);
   return (
     <React.Fragment>
       <div className={styles.dailyDataCardWrapper}>
