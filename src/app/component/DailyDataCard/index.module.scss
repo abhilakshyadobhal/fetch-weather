@@ -40,9 +40,10 @@
   }
 }
 
-
 @include breakpoint(mobile) {
- .card {
-   font-size: 18px;
- }   
+  .card {
+    font-size: 16px;
+    margin-right: 10px;
+    padding: 12px 8px;
+  }
 }
