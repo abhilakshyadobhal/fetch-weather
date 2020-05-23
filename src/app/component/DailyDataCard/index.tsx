@@ -18,20 +18,20 @@ const DailyDataCard: React.FC<IProps> = ({
   return (
     <React.Fragment>
       <div className={styles.card}>
-        <div className='day'>{day}</div>
-        <div className='temp'>
-          <span className='min'>{minTemp}&deg;</span>
+        <div className={styles.day}>{day}</div>
+        <div className={styles.temperature}>
+          <span className={styles.temperature__max}>{maxTemp}&deg;</span>
           &nbsp;&nbsp;
-          <span className='max'>{maxTemp}&deg;</span>
+          <span className={styles.temperature__min}>{minTemp}&deg;</span>
         </div>
-        <div className='weathericon'>
+        <div className={styles.weatherDetails}>
           <img
             src={`/assets/weather-icons/${renderWeatherIconAccordingToWeather(
               weatherType
             )}`}
-            alt=''
+            alt='weather-icon'
           />
-          <div className='weatherType'>{weatherType}</div>
+          <div className={styles.weatherType}>{weatherType}</div>
         </div>
       </div>
     </React.Fragment>

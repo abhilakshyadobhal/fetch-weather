@@ -7,4 +7,31 @@
   &:nth-last-child() {
     margin-right: 0;
   }
+
+  .day {
+    font-weight: 600;
+  }
+
+  .temperature {
+    margin-top: 6px;
+
+    &__max {
+      font-weight: 600;
+    }
+  }
+
+  .weatherDetails {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      height: 50px;
+    }
+  }
+
+  &:hover {
+    border: 1px solid red;
+    border-radius: 5px;
+  }
 }
