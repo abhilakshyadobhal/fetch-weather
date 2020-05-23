@@ -7,12 +7,12 @@
   &::-webkit-scrollbar {
     display: none;
   }
-}
 
-@include breakpoint(tablet) {
-  margin: 20px 60px;
-}
+  @include breakpoint(tablet) {
+    margin: 20px 60px;
+  }
 
-@include breakpoint(mobile) {
-  margin: 20px 30px;
+  @include breakpoint(mobile) {
+    margin: 20px 30px;
+  }
 }
