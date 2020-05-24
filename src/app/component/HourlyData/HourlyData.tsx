@@ -7,21 +7,21 @@ interface IProps {
 }
 
 const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
+  // it will contain all the 24 hours
   const temperatures =
     hourlyData && hourlyData.slice(0, 23).map(({ temp }: any) => temp);
 
+  // it will containe the time
   const times =
     hourlyData &&
-    hourlyData.slice(0, 23).map(
-      ({ dt }: any, i: number) =>
-        // [
-        new Date(dt * 1000).toLocaleTimeString('en-US', {
-          hour: 'numeric',
-          hour12: true,
-          minute: 'numeric',
-        })
-      // temperatures[i],
-      // ]
+    hourlyData.slice(0, 23).map(({ dt }: any, i: number) =>
+      new Date(
+        new Date(dt * 1000).setMinutes(new Date(dt * 1000).getMinutes() - 30)
+      ).toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        hour12: true,
+        minute: 'numeric',
+      })
     );
 
   const data = {
