@@ -13,14 +13,14 @@
   }
 
   .day {
-    font-weight: 600;
+    font-weight: $font-weight-bold;
   }
 
   .temperature {
     margin-top: 6px;
 
     &__max {
-      font-weight: 600;
+      font-weight: $font-weight-bold;
     }
   }
 
@@ -35,14 +35,14 @@
   }
 
   &:hover {
-    border: 1px solid blue;
+    border: 1px solid $color-blue;
     border-radius: 5px;
   }
 }
 
 @include breakpoint(mobile) {
   .card {
-    font-size: 16px;
+    font-size: $font-size-secondary;
     margin-right: 10px;
     padding: 12px 8px;
   }

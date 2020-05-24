@@ -1,0 +1,53 @@
+@import '.../../../../styles/utils/index';
+
+.inputWrapper {
+  width: 90%;
+  margin: 30px auto;
+  text-align: center;
+
+  .inputFieldWithIconWrapper {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: $light-black-box-shadow;
+    border-radius: 10px;
+    padding: 10px 15px;
+    &:focus-within {
+      border: $glowing-blue-box-shadow;
+      box-shadow: 0 0 5px $glowing-blue;
+    }
+    img {
+      width: 22px;
+    }
+    .search {
+      margin-left: 10px;
+    }
+
+    .marker {
+      margin-right: 10px;
+    }
+    .inputField {
+      width: 100%;
+      border: none;
+      font-weight: $font-weight-bold;
+      font-size: $font-size-primary;
+      outline: none;
+    }
+  }
+}
+
+@include breakpoint(tablet) {
+  .inputWrapper {
+    .inputFieldWithIconWrapper {
+      width: 100%;
+    }
+  }
+}
+
+@include breakpoint(mobile) {
+  .inputWrapper {
+    margin: 25px auto;
+  }
+}
