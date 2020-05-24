@@ -5,7 +5,6 @@ interface IProps {
 }
 
 const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
-  console.log(hourlyData);
   return <React.Fragment>h2</React.Fragment>;
 };
 

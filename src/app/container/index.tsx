@@ -4,23 +4,44 @@ import { DailyData } from '../component/DailyData';
 import { CurrentDataCard } from '../component/CurrentDataCard';
 import { HourlyData } from '../component/HourlyData';
 import { InputComponent } from '../component/InputComponent';
+import { getLocationFromIp } from '../../services/ipAddressLookup.service';
 
 const WeatherContainer = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [position, setPosition] = useState({
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<any>(null);
+  const [userInfo, setUserInfo] = useState({
     lat: undefined,
-    lng: undefined,
+    lon: undefined,
+    city: undefined,
+    country: undefined,
   });
   const [dailyData, setDailyData] = useState<any>([]);
   const [hourlyData, setHourlyData] = useState<any>([]);
   const [currentData, setCurrentData] = useState<any>({});
 
+  const getUserInfo = async () => {
+    try {
+      setLoading(true);
+      const userInfoResponse = await getLocationFromIp();
+      const { city, country, lon, lat } = userInfoResponse;
+      setUserInfo((prevState) => ({
+        ...prevState,
+        city,
+        country,
+        lon,
+        lat,
+      }));
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const getWeatherDetails = async () => {
     try {
       setLoading(true);
-      console.log(position.lat, position.lng);
-      const res = await fetchWeather(position.lat, position.lng);
+      const res = await fetchWeather(userInfo.lat, userInfo.lon);
       setDailyData(res.data.daily);
       setHourlyData(res.data.hourly);
       setCurrentData(res.data.current);
@@ -31,39 +52,38 @@ const WeatherContainer = () => {
     }
   };
 
-  const getCoordinates = (position: any) => {
-    const lng = position.coords.longitude;
-    const lat = position.coords.latitude;
-
-    setPosition((prevState) => ({
-      ...prevState,
-      lat,
-      lng,
-    }));
-  };
-
-  useEffect(() => console.log(position), [position]);
-
   // to fetch user location
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(getCoordinates);
-    }
+    getUserInfo();
   }, []);
 
   useEffect(() => {
-    getWeatherDetails();
-  }, [position]);
+    if (userInfo && userInfo.lat && userInfo.lon) {
+      console.log('hey');
+      getWeatherDetails();
+    }
+  }, [userInfo]);
 
-  return (
-    <React.Fragment>
-      <InputComponent />
-      <DailyData dailyData={dailyData} />
-      <CurrentDataCard currentData={currentData}>
-        <HourlyData hourlyData={hourlyData} />
-      </CurrentDataCard>
-    </React.Fragment>
-  );
+  const render = () => {
+    if (loading) return <h1>Loading....</h1>;
+    if (error) return <h1>Error...</h1>;
+    return (
+      <React.Fragment>
+        <InputComponent
+          setLoading={setLoading}
+          setError={setError}
+          setUserInfo={setUserInfo}
+          city={userInfo.city}
+        />
+        <DailyData dailyData={dailyData} />
+        <CurrentDataCard currentData={currentData}>
+          <HourlyData hourlyData={hourlyData} />
+        </CurrentDataCard>
+      </React.Fragment>
+    );
+  };
+
+  return render();
 };
 
 export default WeatherContainer;
