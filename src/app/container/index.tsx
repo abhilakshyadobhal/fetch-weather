@@ -8,6 +8,10 @@ import { InputComponent } from '../component/InputComponent';
 const WeatherContainer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [position, setPosition] = useState({
+    lat: undefined,
+    lng: undefined,
+  });
   const [dailyData, setDailyData] = useState<any>([]);
   const [hourlyData, setHourlyData] = useState<any>([]);
   const [currentData, setCurrentData] = useState<any>({});
@@ -15,7 +19,8 @@ const WeatherContainer = () => {
   const getWeatherDetails = async () => {
     try {
       setLoading(true);
-      const res = await fetchWeather();
+      console.log(position.lat, position.lng);
+      const res = await fetchWeather(position.lat, position.lng);
       setDailyData(res.data.daily);
       setHourlyData(res.data.hourly);
       setCurrentData(res.data.current);
@@ -26,9 +31,29 @@ const WeatherContainer = () => {
     }
   };
 
+  const getCoordinates = (position: any) => {
+    const lng = position.coords.longitude;
+    const lat = position.coords.latitude;
+
+    setPosition((prevState) => ({
+      ...prevState,
+      lat,
+      lng,
+    }));
+  };
+
+  useEffect(() => console.log(position), [position]);
+
+  // to fetch user location
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getCoordinates);
+    }
+  }, []);
+
   useEffect(() => {
     getWeatherDetails();
-  }, []);
+  }, [position]);
 
   return (
     <React.Fragment>
