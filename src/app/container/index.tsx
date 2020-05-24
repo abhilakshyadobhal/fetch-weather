@@ -23,13 +23,13 @@ const WeatherContainer = () => {
     try {
       setLoading(true);
       const userInfoResponse = await getLocationFromIp();
-      const { city, country, lon, lat } = userInfoResponse;
+      const { city, country_name, longitude, latitude } = userInfoResponse;
       setUserInfo((prevState) => ({
         ...prevState,
         city,
-        country,
-        lon,
-        lat,
+        country: country_name,
+        lon: longitude,
+        lat: latitude,
       }));
     } catch (err) {
       setError(err);

@@ -5,7 +5,7 @@ interface IProps {
 }
 
 const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
-  return <React.Fragment>h2</React.Fragment>;
+  return <React.Fragment></React.Fragment>;
 };
 
 export default HourlyData;
