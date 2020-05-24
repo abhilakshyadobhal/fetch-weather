@@ -1,5 +1,5 @@
 import React from 'react';
-import DailyDataCard from '../DailyDataCard';
+import { DailyDataCard } from '../DailyDataCard';
 import { weekDay } from '../../utils';
 import styles from './index.module.scss';
 

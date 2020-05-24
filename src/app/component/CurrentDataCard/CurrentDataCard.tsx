@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash';
-import { HourlyData } from '../HourlyData';
 import styles from './index.module.scss';
 import { renderWeatherIconAccordingToWeather } from '../../utils';
 
@@ -24,6 +23,7 @@ const CurrentDataCard: React.FC<IProps> = ({ currentData, children }) => {
             alt=''
           />
         </div>
+        {/* children will show hourly weather data */}
         {children}
         <div className={styles.pressureHumidityWrapper}>
           <div className={styles.pressure}>

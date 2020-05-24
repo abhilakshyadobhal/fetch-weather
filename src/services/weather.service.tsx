@@ -1,18 +1,30 @@
 import axios from 'axios';
 
-export const getCityWeather = async (_city: string | undefined) => {
+export const getCityWeather = async (city: string | undefined) => {
+  const params = {
+    q: city,
+    appId: process.env.REACT_APP_WEATHER_API_KEY,
+  };
   const res = await axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=${_city}&appid=af3f72199c0b9f7577f413ba180fecc7`
+    `https://api.openweathermap.org/data/2.5/weather`,
+    { params }
   );
   return res.data;
 };
 
 export const fetchWeather = async (
-  _lat: number | undefined,
-  _lng: number | undefined
+  lat: number | undefined,
+  lon: number | undefined
 ) => {
-  const res = axios.get(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${_lat}&lon=${_lng}&units=metric&exclude=minutely&appid=af3f72199c0b9f7577f413ba180fecc7`
-  );
+  const params = {
+    lat,
+    lon,
+    units: 'metric',
+    exclude: 'minutely',
+    appId: process.env.REACT_APP_WEATHER_API_KEY,
+  };
+  const res = axios.get(`https://api.openweathermap.org/data/2.5/onecall`, {
+    params,
+  });
   return res;
 };
