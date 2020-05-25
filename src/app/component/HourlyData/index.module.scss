@@ -14,5 +14,9 @@
     &::-webkit-scrollbar {
       display: none;
     }
+    chart {
+      position: relative;
+      left: -2px;
+    }
   }
 }

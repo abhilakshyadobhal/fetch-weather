@@ -58,6 +58,7 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
                     },
                     gridLines: {
                       display: false,
+                      drawBorder: false,
                     },
                   },
                 ],
@@ -70,6 +71,7 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
                     },
                     gridLines: {
                       display: true,
+                      drawBorder: false,
                     },
                   },
                 ],
