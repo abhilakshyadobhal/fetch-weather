@@ -62,7 +62,7 @@ const CurrentDataCard: React.FC<IProps> = ({ currentData, children }) => {
           </div>
           <div className={styles.sunset}>
             <span className={styles.label}>Sunset</span>
-            <span className={styles.value}>{sunriseTiming || ''}</span>
+            <span className={styles.value}>{sunsetTiming || ''}</span>
           </div>
         </div>
       </div>
