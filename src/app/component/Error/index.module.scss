@@ -1,0 +1,36 @@
+@import '.../../../../styles/utils/index';
+
+.errorWrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  height: 100vh;
+  img {
+    width: 20%;
+  }
+  div {
+    padding: 0 20px;
+  }
+
+  button {
+    margin-top: 10px;
+    border: none;
+    background: $color-blue;
+    padding: 12px 35px;
+    border-radius: 20px;
+    color: $color-white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.5s;
+
+    &:hover {
+      opacity: 0.55;
+    }
+  }
+}

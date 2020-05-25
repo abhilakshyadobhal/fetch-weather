@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './index.module.scss';
 import { getCityWeather } from '../../../services/weather.service';
+import { getError } from '../../utils';
 
 interface IProps {
   city: string | undefined;
@@ -27,7 +28,7 @@ const InputComponent: React.FC<IProps> = ({
       const currentWeatherRes = await getCityWeather(enteredCityName);
       const {
         coord: { lon, lat },
-      } = currentWeatherRes;
+      } = currentWeatherRes.data;
       // we will change the coordinates so that we can fetch 7 days weather data and hourly data for the location entered
       setUserInfo((prevState: any) => ({
         ...prevState,
@@ -36,7 +37,7 @@ const InputComponent: React.FC<IProps> = ({
         city: enteredCityName,
       }));
     } catch (err) {
-      setError(err);
+      setError(getError(err));
     } finally {
       setLoading(false);
     }

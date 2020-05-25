@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { getError } from '../utils';
+import { getLocationFromIp } from '../../services/ipAddressLookup.service';
 import { fetchWeather } from '../../services/weather.service';
 import { DailyData } from '../component/DailyData';
 import { CurrentDataCard } from '../component/CurrentDataCard';
 import { HourlyData } from '../component/HourlyData';
 import { InputComponent } from '../component/InputComponent';
-import { getLocationFromIp } from '../../services/ipAddressLookup.service';
 import { Loader } from '../component/Loader';
+import { Error } from '../component/Error';
 
 const WeatherContainer = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -24,7 +26,7 @@ const WeatherContainer = () => {
     try {
       setLoading(true);
       const userInfoResponse = await getLocationFromIp();
-      const { city, country_name, longitude, latitude } = userInfoResponse;
+      const { city, country_name, longitude, latitude } = userInfoResponse.data;
       setUserInfo((prevState) => ({
         ...prevState,
         city,
@@ -33,7 +35,7 @@ const WeatherContainer = () => {
         lat: latitude,
       }));
     } catch (err) {
-      setError(err);
+      setError(getError(err));
     } finally {
       setLoading(false);
     }
@@ -47,7 +49,7 @@ const WeatherContainer = () => {
       setHourlyData(res.data.hourly);
       setCurrentData(res.data.current);
     } catch (err) {
-      setError(err);
+      setError(getError(err));
     } finally {
       setLoading(false);
     }
@@ -66,7 +68,7 @@ const WeatherContainer = () => {
 
   const render = () => {
     if (loading) return <Loader />;
-    if (error) return <h1>Error...</h1>;
+    if (error) return <Error error={error} />;
     return (
       <React.Fragment>
         {/* it will show the input field on the top */}

@@ -21,8 +21,8 @@ export const renderWeatherIconAccordingToWeather = (_weatherType: string) => {
 
 // to get error message
 export const getError = (err: any) => {
-  if (err.response && err.response.data && err.response.data.error) {
-    return err.response.data.error;
+  if (err.response && err.response.data && err.response.data.cod) {
+    return err.response.data.message;
   }
   return 'Some Error Occured';
 };
