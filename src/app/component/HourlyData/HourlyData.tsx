@@ -7,6 +7,8 @@ interface IProps {
 }
 
 const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
+  const [width, setWidth] = React.useState(window.innerWidth);
+
   // it will contain all the 24 hours
   const temperatures =
     hourlyData && hourlyData.slice(0, 23).map(({ temp }: any) => temp);
@@ -36,15 +38,24 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
     ],
   };
 
+  React.useEffect(() => {
+    const handleWindowResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleWindowResize);
+
+    // Return a function from the effect that removes the event listener
+    return () => window.removeEventListener('resize', handleWindowResize);
+  }, [window]);
+
+  useEffect(() => console.log(width), [width]);
+
   return (
     <React.Fragment>
-      {' '}
       <div className={styles.chartWrapper}>
         <div className={styles.chartAreaWrapper}>
           <Line
             data={data}
             height={150}
-            width={1680}
+            width={width <=1440 ? 2000 : width-250}
             options={{
               maintainAspectRatio: false,
               responsive: false,
