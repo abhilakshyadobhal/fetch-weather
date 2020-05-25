@@ -38,43 +38,40 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
   return (
     <React.Fragment>
       <div className={styles.chartWrapper}>
-        <Line
-          data={data}
-          options={{
-            maintainAspectRatio: false,
-            responsive: true,
-            legend: {
-              display: false,
-            },
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    display: false,
+        <div className={styles.chartAreaWrapper}>
+          <Line
+            data={data}
+            options={{
+              maintainAspectRatio: false,
+              responsive: true,
+              legend: {
+                display: false,
+              },
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      display: false,
+                    },
+                    gridLines: {
+                      display: false,
+                    },
                   },
-                  gridLines: {
-                    display: false,
+                ],
+                xAxes: [
+                  {
+                    ticks: { autoSkip: false, padding: 25 },
+                    gridLines: {
+                      display: true,
+                    },
                   },
-                },
-              ],
-              xAxes: [
-                // {
-                //   ticks: {
-                //     callback: (value: any) => {
-                //       return '$' + value;
-                //     },
-                //   },
-                // },
-                {
-                  gridLines: {
-                    display: true,
-                  },
-                },
-              ],
-            },
-          }}
-        />
+                ],
+              },
+            }}
+          />
+        </div>
       </div>
+      <div className={styles.chartWrappers}></div>
     </React.Fragment>
   );
 };

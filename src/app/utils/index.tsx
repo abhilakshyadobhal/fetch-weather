@@ -10,11 +10,11 @@ export const renderWeatherIconAccordingToWeather = (_weatherType: string) => {
       return 'drizzle.svg';
     case 'Snow':
       return 'snow.svg';
-    case 'Atmosphere':
-      return 'atmosphere.svg';
     case 'Clear':
       return 'clear.svg';
     case 'Clouds':
       return 'clouds.svg';
+    default:
+      return 'default.svg';
   }
 };
