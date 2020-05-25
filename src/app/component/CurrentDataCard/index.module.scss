@@ -26,24 +26,43 @@
     }
   }
 
-  .pressureHumidityWrapper {
+  .cssForWrappers {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+  }
 
+  .commonCssForDivInsideWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    font-size: $font-size-primary;
+  }
+
+  .label {
+    font-weight: $font-weight-bold;
+  }
+
+  .pressureHumidityWrapper {
+    @extend .cssForWrappers;
     .pressure,
     .humidity {
-      display: flex;
-      flex-direction: column;
-      width: 45%;
-      font-size: $font-size-primary;
+      @extend .commonCssForDivInsideWrapper;
       padding: 10px;
       background: $color-light-blue;
       border-radius: 5px;
 
-      .label {
-        font-weight: $font-weight-bold;
+      @include breakpoint(mobile) {
+        font-size: $font-size-secondary;
       }
+    }
+  }
+
+  .sunriseSunsetWrapper {
+    @extend .cssForWrappers;
+    .sunrise,
+    .sunset {
+      @extend .commonCssForDivInsideWrapper;
     }
   }
 }

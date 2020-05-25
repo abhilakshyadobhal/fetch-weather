@@ -60,7 +60,6 @@ const WeatherContainer = () => {
 
   useEffect(() => {
     if (userInfo && userInfo.lat && userInfo.lon) {
-      console.log('hey');
       getWeatherDetails();
     }
   }, [userInfo]);

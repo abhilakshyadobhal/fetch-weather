@@ -1,4 +1,10 @@
+// .chartWrapper {
+//   display: flex;
+//   justify-content: center;
+//   margin: 30px 0;
+// }
 .chartWrapper {
+  margin: 20px 0;
   position: relative;
   display: flex;
 
@@ -6,9 +12,6 @@
     width: 100%;
     overflow-x: scroll;
     &::-webkit-scrollbar {
-      display: none;
-    }
-    :global .chartjs-size-monitor {
       display: none;
     }
   }

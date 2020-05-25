@@ -18,3 +18,11 @@ export const renderWeatherIconAccordingToWeather = (_weatherType: string) => {
       return 'default.svg';
   }
 };
+
+// to get error message
+export const getError = (err: any) => {
+  if (err.response && err.response.data && err.response.data.error) {
+    return err.response.data.error;
+  }
+  return 'Some Error Occured';
+};

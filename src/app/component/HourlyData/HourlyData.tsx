@@ -11,18 +11,19 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
   const temperatures =
     hourlyData && hourlyData.slice(0, 23).map(({ temp }: any) => temp);
 
-  // it will containe the time
+  // it will containe the time and temperature as we have to both on x-axes
   const times =
     hourlyData &&
-    hourlyData.slice(0, 23).map(({ dt }: any, i: number) =>
+    hourlyData.slice(0, 23).map(({ dt }: any, i: number) => [
+      `${temperatures[i]} \u00B0`,
       new Date(
         new Date(dt * 1000).setMinutes(new Date(dt * 1000).getMinutes() - 30)
       ).toLocaleTimeString('en-US', {
         hour: 'numeric',
         hour12: true,
         minute: 'numeric',
-      })
-    );
+      }),
+    ]);
 
   const data = {
     labels: times,
@@ -41,9 +42,11 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
         <div className={styles.chartAreaWrapper}>
           <Line
             data={data}
+            height={150}
+            width={2400}
             options={{
-              maintainAspectRatio: false,
-              responsive: true,
+              maintainAspectRatio: true,
+              responsive: false,
               legend: {
                 display: false,
               },
@@ -60,7 +63,11 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
                 ],
                 xAxes: [
                   {
-                    ticks: { autoSkip: false, padding: 25 },
+                    ticks: {
+                      autoSkip: false,
+                      fontStyle: 'bold',
+                      fontSize: 14,
+                    },
                     gridLines: {
                       display: true,
                     },
@@ -71,7 +78,6 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
           />
         </div>
       </div>
-      <div className={styles.chartWrappers}></div>
     </React.Fragment>
   );
 };

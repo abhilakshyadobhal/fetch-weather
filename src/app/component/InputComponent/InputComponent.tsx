@@ -18,9 +18,12 @@ const InputComponent: React.FC<IProps> = ({
   const [enteredCityName, setEnteredCityName] = useState<string | undefined>(
     city
   );
+
+  // if user will press enter or search icon then to get weather
   const getCurrentWeatherData = async () => {
     try {
       setLoading(true);
+      // to get city coordinates
       const currentWeatherRes = await getCityWeather(enteredCityName);
       const {
         coord: { lon, lat },
@@ -42,8 +45,6 @@ const InputComponent: React.FC<IProps> = ({
   const handleChange = (e: any) => {
     setEnteredCityName(e.target.value);
   };
-
-  useEffect(() => console.log(enteredCityName), [enteredCityName]);
 
   return (
     <React.Fragment>

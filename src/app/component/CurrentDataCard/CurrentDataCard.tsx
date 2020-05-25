@@ -9,6 +9,22 @@ interface IProps {
 }
 
 const CurrentDataCard: React.FC<IProps> = ({ currentData, children }) => {
+  const sunriseTiming =
+    _.get(currentData, 'sunrise', undefined) &&
+    new Date(currentData.sunrise * 1000).toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      hour12: true,
+      minute: 'numeric',
+    });
+
+  const sunsetTiming =
+    _.get(currentData, 'sunset', undefined) &&
+    new Date(currentData.sunset * 1000).toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      hour12: true,
+      minute: 'numeric',
+    });
+
   return (
     <React.Fragment>
       <div className={styles.todayWeatherDataWrapper}>
@@ -37,6 +53,16 @@ const CurrentDataCard: React.FC<IProps> = ({ currentData, children }) => {
             <span className={styles.value}>
               {_.get(currentData, 'humidity', undefined)} %
             </span>
+          </div>
+        </div>
+        <div className={styles.sunriseSunsetWrapper}>
+          <div className={styles.sunrise}>
+            <span className={styles.label}>Sunrise</span>
+            <span className={styles.value}>{sunriseTiming || ''}</span>
+          </div>
+          <div className={styles.sunset}>
+            <span className={styles.label}>Sunset</span>
+            <span className={styles.value}>{sunriseTiming || ''}</span>
           </div>
         </div>
       </div>
