@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import styles from './index.module.scss';
 
@@ -38,14 +38,15 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
 
   return (
     <React.Fragment>
+      {' '}
       <div className={styles.chartWrapper}>
         <div className={styles.chartAreaWrapper}>
           <Line
             data={data}
             height={150}
-            width={2400}
+            width={1680}
             options={{
-              maintainAspectRatio: true,
+              maintainAspectRatio: false,
               responsive: false,
               legend: {
                 display: false,
@@ -58,7 +59,6 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
                     },
                     gridLines: {
                       display: false,
-                      drawBorder: false,
                     },
                   },
                 ],
@@ -71,7 +71,6 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
                     },
                     gridLines: {
                       display: true,
-                      drawBorder: false,
                     },
                   },
                 ],
