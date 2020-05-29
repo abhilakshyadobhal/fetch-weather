@@ -55,7 +55,7 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
           <Line
             data={data}
             height={150}
-            width={width <=1440 ? 2000 : width-250}
+            width={width <= 1440 ? 2000 : width - 250}
             options={{
               maintainAspectRatio: false,
               responsive: false,

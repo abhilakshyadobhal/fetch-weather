@@ -8,6 +8,9 @@
   align-items: center;
   transition: all 0.5s ease-in-out;
   padding: 12px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+
   &:nth-last-child() {
     margin-right: 0;
   }
@@ -35,8 +38,7 @@
   }
 
   &:hover {
-    border: 1px solid $color-blue;
-    border-radius: 5px;
+    border-color: $color-blue;
   }
 }
 
