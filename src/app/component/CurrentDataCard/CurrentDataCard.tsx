@@ -41,28 +41,28 @@ const CurrentDataCard: React.FC<IProps> = ({ currentData, children }) => {
         </div>
         {/* children will show hourly weather data */}
         {children}
-        <div className={styles.pressureHumidityWrapper}>
-          <div className={styles.pressure}>
-            <span className={styles.label}>Pressure</span>
-            <span className={styles.value}>
+        <div className={styles.weatherAllInfo}>
+          <div>
+            <span className={styles.label}>
               {_.get(currentData, 'pressure', undefined)} hpa
             </span>
-          </div>
-          <div className={styles.humidity}>
-            <span className={styles.label}>Humidity</span>
             <span className={styles.value}>
-              {_.get(currentData, 'humidity', undefined)} %
+              Pressure
             </span>
           </div>
-        </div>
-        <div className={styles.sunriseSunsetWrapper}>
-          <div className={styles.sunrise}>
-            <span className={styles.label}>Sunrise</span>
-            <span className={styles.value}>{sunriseTiming || ''}</span>
+          <div>
+            <span className={styles.label}>{_.get(currentData, 'humidity', undefined)} %</span>
+            <span className={styles.value}>
+              Humidity
+            </span>
           </div>
-          <div className={styles.sunset}>
-            <span className={styles.label}>Sunset</span>
-            <span className={styles.value}>{sunsetTiming || ''}</span>
+          <div>
+            <span className={styles.label}>{sunriseTiming || ''}</span>
+            <span className={styles.value}>Sunrise</span>
+          </div>
+          <div>
+            <span className={styles.label}>{sunsetTiming || ''}</span>
+            <span className={styles.value}>Sunset</span>
           </div>
         </div>
       </div>

@@ -14,6 +14,7 @@
     box-shadow: $light-black-box-shadow;
     border-radius: 10px;
     padding: 10px 15px;
+    background-color: $color-white;
     &:focus-within {
       border: $glowing-blue-box-shadow;
       box-shadow: 0 0 5px $glowing-blue;

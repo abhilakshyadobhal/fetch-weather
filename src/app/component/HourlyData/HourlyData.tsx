@@ -44,7 +44,7 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
 
     // Return a function from the effect that removes the event listener
     return () => window.removeEventListener('resize', handleWindowResize);
-  }, [window]);
+  }, []);
 
   useEffect(() => console.log(width), [width]);
 
@@ -54,7 +54,7 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
         <div className={styles.chartAreaWrapper}>
           <Line
             data={data}
-            height={150}
+            height={220}
             width={width <= 1440 ? 2000 : width - 250}
             options={{
               maintainAspectRatio: false,

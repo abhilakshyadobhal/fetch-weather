@@ -1,4 +1,4 @@
-@import '../../styles/utils';
+@import "../../styles/utils";
 
 .todayWeatherDataWrapper {
   width: 90%;
@@ -6,8 +6,9 @@
   margin-top: 20px;
   padding: 20px;
   box-shadow: $light-black-box-shadow;
-  border-radius: 5px;
+  border-radius: 16px;
   transition: 0.3s;
+  background-color: rgba(255, 255, 255, 0.2);
 
   &:hover {
     box-shadow: $light-black-onhover-shadow;
@@ -26,43 +27,22 @@
     }
   }
 
-  .cssForWrappers {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-
-  .commonCssForDivInsideWrapper {
-    display: flex;
-    flex-direction: column;
-    width: 45%;
+  .label {
+    font-weight: $font-weight-bold;
     font-size: $font-size-primary;
   }
 
-  .label {
-    font-weight: $font-weight-bold;
-  }
-
-  .pressureHumidityWrapper {
-    @extend .cssForWrappers;
-    .pressure,
-    .humidity {
-      @extend .commonCssForDivInsideWrapper;
-      padding: 10px;
-      background: $color-light-blue;
-      border-radius: 5px;
-
-      @include breakpoint(mobile) {
-        font-size: $font-size-secondary;
-      }
+  .weatherAllInfo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    > div {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
     }
-  }
-
-  .sunriseSunsetWrapper {
-    @extend .cssForWrappers;
-    .sunrise,
-    .sunset {
-      @extend .commonCssForDivInsideWrapper;
+    @include breakpoint(mobile) {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 20px;
     }
   }
 }

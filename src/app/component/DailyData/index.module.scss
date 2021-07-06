@@ -1,9 +1,21 @@
+@import "../../styles/utils";
+
 .dailyDataCardWrapper {
-  display: flex;
-  overflow-x: auto;
   max-width: 90%;
-  margin: auto;
-  &::-webkit-scrollbar {
-    display: none;
+  margin: 2em auto;
+  color: $color-white;
+
+  > h1 {
+    margin: 0.5em 0;
+    font-weight: bold;
+  }
+
+  > div:first-of-type {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }

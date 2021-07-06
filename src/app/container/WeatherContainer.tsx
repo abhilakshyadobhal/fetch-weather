@@ -64,6 +64,7 @@ const WeatherContainer = () => {
     if (userInfo && userInfo.lat && userInfo.lon) {
       getWeatherDetails();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo]);
 
   const render = () => {
@@ -79,13 +80,13 @@ const WeatherContainer = () => {
           city={userInfo.city}
         />
 
-        {/* it will show the daily data for the next 7 days */}
-        <DailyData dailyData={dailyData} />
-
         {/* it will show the current data, humidity, pressure and hourly weather data */}
         <CurrentDataCard currentData={currentData}>
           <HourlyData hourlyData={hourlyData} />
         </CurrentDataCard>
+
+        {/* it will show the daily data for the next 7 days */}
+        <DailyData dailyData={dailyData} />
       </React.Fragment>
     );
   };
