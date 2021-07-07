@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
-  const [width, setWidth] = React.useState(window.innerWidth);
+  const [width, setWidth] = useState(window.innerWidth);
 
   // it will contain all the 24 hours
   const temperatures =
