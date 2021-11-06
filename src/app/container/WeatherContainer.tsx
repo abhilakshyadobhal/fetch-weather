@@ -64,7 +64,7 @@ const WeatherContainer = () => {
     if (userInfo && userInfo.lat && userInfo.lon) {
       getWeatherDetails();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo]);
 
   const render = () => {

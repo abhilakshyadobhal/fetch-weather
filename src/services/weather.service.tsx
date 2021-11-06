@@ -9,7 +9,6 @@ export const getCityWeather = async (city: string | undefined) => {
     `https://api.openweathermap.org/data/2.5/weather`,
     { params }
   );
-  console.log(res);
   return res;
 };
 

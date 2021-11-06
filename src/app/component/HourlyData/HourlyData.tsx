@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import styles from './index.module.scss';
 
@@ -45,8 +45,6 @@ const HourlyData: React.FC<IProps> = ({ hourlyData }) => {
     // Return a function from the effect that removes the event listener
     return () => window.removeEventListener('resize', handleWindowResize);
   }, []);
-
-  useEffect(() => console.log(width), [width]);
 
   return (
     <React.Fragment>

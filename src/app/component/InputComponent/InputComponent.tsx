@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './index.module.scss';
-import { getCityWeather } from '../../../services/weather.service';
+
 import { getError } from '../../utils';
+import { getGeoCoordinates } from '../../../services/reverseGeoLocation.service';
 
 interface IProps {
   city: string | undefined;
@@ -21,21 +22,17 @@ const InputComponent: React.FC<IProps> = ({
   );
 
   // if user will press enter or search icon then to get weather
-  const getCurrentWeatherData = async () => {
+  const getCoordinates = async () => {
     try {
       setLoading(true);
-      // to get city coordinates
-      const currentWeatherRes = await getCityWeather(enteredCityName);
-      const {
-        coord: { lon, lat },
-      } = currentWeatherRes.data;
-      // we will change the coordinates so that we can fetch 7 days weather data and hourly data for the location entered
+      const res = await getGeoCoordinates(enteredCityName);
+      const { features: [cityWhoseCoordNeeded] }: any = res;
+      const { center, place_name } = cityWhoseCoordNeeded;
+      const placeNameArr = place_name.split(', ');
       setUserInfo((prevState: any) => ({
-        ...prevState,
-        lon,
-        lat,
-        city: enteredCityName,
-      }));
+        ...prevState, lon: center?.[0], lat: center?.[1],
+        city: placeNameArr?.[0], country: placeNameArr?.[placeNameArr.length - 1]
+      }))
     } catch (err) {
       setError(getError(err));
     } finally {
@@ -61,14 +58,14 @@ const InputComponent: React.FC<IProps> = ({
             value={
               enteredCityName &&
               enteredCityName?.charAt(0).toUpperCase() +
-                enteredCityName.slice(1)
+              enteredCityName.slice(1)
             }
             onChange={handleChange}
             className={styles.inputField}
             name='location'
             onKeyDown={(e: any) => {
               if (e.key === 'Enter') {
-                getCurrentWeatherData();
+                getCoordinates();
               }
             }}
           />
@@ -77,7 +74,7 @@ const InputComponent: React.FC<IProps> = ({
             src='/assets/search.svg'
             alt='search-icon'
             onClick={() => {
-              getCurrentWeatherData();
+              getCoordinates();
             }}
           />
         </div>
